@@ -1,0 +1,28 @@
+{% extends 'pdfcreator/layout.html' %}
+
+{% block body %}
+    <h1>Cree su PDF aquí</h1>
+
+    <br>
+
+    {% for header in headers %}
+
+		  <button>{{ header }}</button>
+
+    {% endfor %}
+
+    <br>
+    <br>
+
+    <form action="{% url 'pdfcreator:index' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+
+    {% autoescape off %}
+      {{ table }}
+    {% endautoescape %}
+{% endblock %}
